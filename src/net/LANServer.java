@@ -5,7 +5,8 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-package lan_draughts.net; // part of the network package
+
+//package lan_draughts.net; // part of the network package
 
 public class LANServer{
 
@@ -18,9 +19,7 @@ public class LANServer{
 
     public LANServer() {
 
-        initComponents();
-        this.setTitle("Server");
-        this.setVisible(true);
+
     }
     public void startRunning()
     {
@@ -32,7 +31,7 @@ public class LANServer{
                 try
                 {
                     connection=server.accept();
-                    println(" Now Connected to "+connection.getInetAddress().getHostName());
+              //      system.out.println(" Now Connected to "+connection.getInetAddress().getHostName());
 
 
                     output = new ObjectOutputStream(connection.getOutputStream());
@@ -43,6 +42,7 @@ public class LANServer{
 
                 }catch(EOFException eofException)
                 {
+                    // Nothing needs to go here yet
                 }
             }
         }
@@ -59,10 +59,10 @@ public class LANServer{
             try
             {
                 message = (String) input.readObject();
-                println(message); // Incoming messages.
+         //       system.out.println(message); // Incoming messages.
             }catch(ClassNotFoundException classNotFoundException)
             {
-
+                // Nothing has to go here yet
             }
         }while(!message.equals("Client - END")); // Termination message.
     }
@@ -75,7 +75,7 @@ public class LANServer{
         }
         catch(IOException ioException)
         {
-            println("ERROR: Unable to send the message")
+         //   system.out.println("ERROR: Unable to send the message");
         }
     }
 }

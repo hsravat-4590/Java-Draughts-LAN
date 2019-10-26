@@ -5,9 +5,9 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
 
-package lan_draughts.net; // part of the network package
+//package lan_draughts.net; // part of the network package
 
-public class networkClient{
+public class NetworkClient{
 
     // Variable declarations
     private ObjectOutputStream output;
@@ -17,7 +17,7 @@ public class networkClient{
     private Socket connection;
     private int port = 6789; // Constant port
 
-    public networkClient(String sIP){
+    public NetworkClient(String sIP){
         this.setVisible(true);
         serverIP = sIP;
     }
@@ -25,15 +25,15 @@ public class networkClient{
     {
         try
         {
-            println("Attempting Connection with host server...")
+            println("Attempting Connection with host server...");
             try
             {
                 connection = new Socket(InetAddress.getByName(serverIP),port);
-            }catch(IOException ioEception)
+            }catch(IOException ioException)
             {
-                println("WARNING: Server might be down!")
+                system.out.println("WARNING: Server might be down!");
             }
-            println("Connected to: " + connection.getInetAddress().getHostName());
+            system.out.println("Connected to: " + connection.getInetAddress().getHostName());
 
 
             output = new ObjectOutputStream(connection.getOutputStream());
@@ -68,11 +68,10 @@ public class networkClient{
         {
             output.writeObject("Client - " + message);
             output.flush();
-            chatArea.append("\nClient - "+message);
         }
         catch(IOException ioException)
         {
-            println("\n Unable to send a message")
+            system.out.println("\n Unable to send a message");
         }
     }
 }
